@@ -63,7 +63,7 @@ Our paper will be available soon. For now, you can cite:
     year={2023},
 }
 ```
-Consider also citing the original [mGENRE](https://aclanthology.org/2022.tacl-1.16/) and [XLM-RoBERTa](https://aclanthology.org/2020.acl-main.747/) papers.
+Consider also citing the  [mGENRE](https://aclanthology.org/2022.tacl-1.16/) and [XLM-RoBERTa](https://aclanthology.org/2020.acl-main.747/) papers.
 
 ## Usage
 The scripts to reproduce the results in the shared task can be found in the [reproduce_MultiCoNER2](reproduce_MultiCoNER2/) folder.
