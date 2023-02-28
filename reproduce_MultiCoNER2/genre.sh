@@ -2,7 +2,7 @@
 #SBATCH --job-name=genre
 #SBATCH --cpus-per-task=40
 #SBATCH --gres=gpu:1
-#SBATCH --mem=64G
+#SBATCH --mem=128G
 #SBATCH --output=genre.out.txt
 #SBATCH --error=genre.err.txt
 

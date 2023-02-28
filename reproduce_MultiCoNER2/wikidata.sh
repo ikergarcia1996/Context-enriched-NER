@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=genre
+#SBATCH --job-name=retrieval
 #SBATCH --cpus-per-task=40
 #SBATCH --gres=gpu:1
-#SBATCH --mem=64G
-#SBATCH --output=genre.out.txt
-#SBATCH --error=genre.err.txt
+#SBATCH --mem=128G
+#SBATCH --output=retrieval.out.txt
+#SBATCH --error=retrieval.err.txt
 
 source /ikerlariak/igarcia945/envs/pytorch-tximista/bin/activate
 
