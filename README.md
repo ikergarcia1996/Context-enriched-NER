@@ -70,7 +70,7 @@ The scripts to reproduce the results in the shared task can be found in the [rep
 
 ### Entity Boundary Detection
 <p align="center">
-<img src="images/EntityBoundary.png" width="300" >
+<img src="images/EntityBoundary.png" width="400" >
 </p>
 
 This is the task of detecting the boundaries of the entities in the input text.
@@ -106,7 +106,7 @@ At the end you will get a `test.model_predictions.tsv` file in the output direct
 
 ### Entity Linking
 <p align="center">
-<img src="images/entityLinking.png" width="300">
+<img src="images/entityLinking.png" width="400">
 </p>
 
 For each entity boundary detected in the previous step, we need to link it to a Wikidata ID.
@@ -141,7 +141,7 @@ They provide alternative implementations of the trie that use less RAM, but they
 
 ### Wikipedia/WikiData Retrieval
 <p align="center">
-<img src="images/wikidata.png" width="300">
+<img src="images/wikidata.png" width="400">
 </p>
 
 Given the Wikidata IDs predicted by mGENRE, we need to retrieve the corresponding Wikidata description, 
@@ -172,7 +172,7 @@ See `data_examples/context-enriched.json` for an example of the output you will 
 
 ### Entity Classification
 <p align="center">
-<img src="images/textclass.png" width="300">
+<img src="images/textclass.png" width="400">
 </p>
 
 Finally, we need to classify the entities into the 36 classes of the shared task. We use the [XLM-RoBERTa](https://huggingface.co/xlm-roberta-large) model.
