@@ -24,13 +24,13 @@ python3 run_genre.py \
 --batch_size 32 \
 --output_path ./results/genre/"$lang"/"$lang"_train.json
 
-python3 run_genre_wikidata.py \
+python3 run_genre.py \
 --tsv_path ./multiconer2023/entity/"$lang"_dev.conll \
 --batch_size 32 \
 --output_path ./results/genre/"$lang"/"$lang"_dev.json
 
 # For the test set, we use the predicted boundaries
-python3 run_genre_wikidata.py \
+python3 run_genre.py \
 --tsv_path ../results/entity_boundaries/"$lang"/test.model_predictions.tsv \
 --batch_size 32 \
 --output_path ./results/genre/"$lang"/"$lang"_test.json
