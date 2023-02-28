@@ -153,7 +153,7 @@ it can slow down the parallelization. You can disable the cache with the `--igno
 But if you use too many processes, the MediaWiki API will block your IP for a few seconds and the script will run slower. Each process will 
 retrieve the information for a batch of entities. After completing the batch, it will write the cache to disk. In this example,
 we provide safe values for the number of processes and the batch size. Feel to experiment with them to speed up the retrieval.
-You can see the ones we used in the shared task in the `reproduce_MultiCoNER2/wikidata.sh` script.
+You can see the ones we used in the shared task in the [reproduce_MultiCoNER2/wikidata.sh](reproduce_MultiCoNER2/wikidata.sh) script.
 
 The language argument is the language in which we want to retrieve the information. We use English for all the languages in the shared task. 
 But you can use any language you want. 
