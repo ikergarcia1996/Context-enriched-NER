@@ -66,7 +66,7 @@ Our paper will be available soon. For now, you can cite:
 Consider also citing the original [mGENRE](https://aclanthology.org/2022.tacl-1.16/) and [XLM-RoBERTa](https://aclanthology.org/2020.acl-main.747/) papers.
 
 ## Usage
-The scripts to reproduce the results in the shared task can be found in the `reproduce_MultiCoNER2` folder.
+The scripts to reproduce the results in the shared task can be found in the [reproduce_MultiCoNER2](reproduce_MultiCoNER2/) folder.
 
 ### Entity Boundary Detection
 <p align="center">
@@ -79,7 +79,7 @@ You can run the `fine2ent.py` script to convert the fine-grained labels to entit
 ```bash
 python3 fine2ent.py
 ```
-See `data_examples/entity_boundary.conll` for an example of the input format.
+See [data_examples/entity_boundary.conll](data_examples/entity_boundary.conll) for an example of the input format.
 
 We provide our script for token classification with is a binding of the [Hugginface's Token classification script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/token-classification).
 You can use any Token Classification script you want, for example [flair](https://github.com/flairNLP/flair) or [SpaCy](https://spacy.io/). If you want to use our Token Classification script, you can run:
@@ -176,7 +176,7 @@ See `data_examples/context-enriched.json` for an example of the output you will 
 </p>
 
 Finally, we need to classify the entities into the 36 classes of the shared task. We use the [XLM-RoBERTa](https://huggingface.co/xlm-roberta-large) model.
-The input is a json file with the Wikidata/Wikipedia information retrieved in the previous step. See `data_examples/context-enriched.json` for an example.
+The input is a json file with the Wikidata/Wikipedia information retrieved in the previous step. See [data_examples/context-enriched.json](data_examples/context-enriched.json) for an example.
 
 You can run the `run_entity_classification.py` script to classify the entities. 
 ```bash
