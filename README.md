@@ -2,8 +2,9 @@
 
 This is the code for IXA/Cogcomp team at SemEval-2023 Task 2: Multilingual Complex Named Entity Recognition: https://multiconer.github.io/
 
-
-<img align="center" src="images/Overview.png" width="300" >
+<p align="center">
+<img src="images/Overview.png" width="500" >
+</p>
 
 ## Installation
 
@@ -68,7 +69,9 @@ Consider also citing the original [mGENRE](https://aclanthology.org/2022.tacl-1.
 The scripts to reproduce the results in the shared task can be found in the `reproduce_MultiCoNER2` folder.
 
 ### Entity Boundary Detection
-<img align="center" src="images/EntityBoundary.png" width="300" >
+<p align="center">
+<img src="images/EntityBoundary.png" width="300" >
+</p>
 
 This is the task of detecting the boundaries of the entities in the input text.
 The input is a text in the conll tsv format. It should have label with only B-ENTITY and I-ENTITY classes.
@@ -102,7 +105,10 @@ number_of_experiments is the number of model you want to train. The script will 
 At the end you will get a `test.model_predictions.tsv` file in the output directory.
 
 ### Entity Linking
-<img align="center" src="images/entityLinking.png" width="300">
+<p align="center">
+<img src="images/entityLinking.png" width="300">
+</p>
+
 For each entity boundary detected in the previous step, we need to link it to a Wikidata ID.
 We use mGENRE to do this task. You can run the `run_genre.py` script to link the entities. 
 
@@ -134,7 +140,9 @@ See the [mGENRE](https://github.com/facebookresearch/GENRE/tree/main/examples_mg
 They provide alternative implementations of the trie that use less RAM, but they are slower.
 
 ### Wikipedia/WikiData Retrieval
-<img align="center" src="images/wikidata.png" width="300">
+<p align="center">
+<img src="images/wikidata.png" width="300">
+</p>
 
 Given the Wikidata IDs predicted by mGENRE, we need to retrieve the corresponding Wikidata description, 
 Wikdiata arguments and Wikipedia summary. Use the `get_wikidata.py` script.
@@ -163,7 +171,10 @@ done
 See `data_examples/context-enriched.json` for an example of the output you will get after running mGENRE and the Wikidata/Wikipedia retrieval.
 
 ### Entity Classification
-<img align="center" src="images/textclass.png" width="300">
+<p align="center">
+<img src="images/textclass.png" width="300">
+</p>
+
 Finally, we need to classify the entities into the 36 classes of the shared task. We use the [XLM-RoBERTa](https://huggingface.co/xlm-roberta-large) model.
 The input is a json file with the Wikidata/Wikipedia information retrieved in the previous step. See `data_examples/context-enriched.json` for an example.
 
