@@ -1,6 +1,7 @@
 # Context-enriched multilingual named entity recognition using knowledge bases. 
 
-This is the code for IXA/Cogcomp team at SemEval-2023 Task 2: Multilingual Complex Named Entity Recognition: https://multiconer.github.io/
+This is the code for [IXA/Cogcomp at SemEval-2023 Task 2: Context-enriched Multilingual Named Entity Recognition using Knowledge Bases](https://arxiv.org/abs/2304.10637) paper: https://multiconer.github.io/  
+
 
 <p align="center">
 <img src="images/Overview.png" width="500" >
@@ -55,12 +56,14 @@ python3 preprocess_MultiCoNER2.py
 
 ## Citation
 
-Our paper will be available soon. For now, you can cite:
 ```
-@misc{ixa-Cogcomp-2023,
-    title={IXA/Cogcomp at SemEval-2023 Task 2: Context-enriched Multilingual Named Entity Recognition using Knowledge Bases},
-    author={García-Ferrero, Iker and Campos, Jon Ander and Sainz, Oscar and Salaberria, Ander and Roth, Dan},
-    year={2023},
+@misc{garcíaferrero2023ixacogcomp,
+      title={IXA/Cogcomp at SemEval-2023 Task 2: Context-enriched Multilingual Named Entity Recognition using Knowledge Bases}, 
+      author={Iker García-Ferrero and Jon Ander Campos and Oscar Sainz and Ander Salaberria and Dan Roth},
+      year={2023},
+      eprint={2304.10637},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
 Consider also citing the  [mGENRE](https://aclanthology.org/2022.tacl-1.16/) and [XLM-RoBERTa](https://aclanthology.org/2020.acl-main.747/) papers.
