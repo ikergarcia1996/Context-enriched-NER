@@ -20,12 +20,12 @@ for lang in bn de en es fa fr hi it pt sv uk zh multi
 do
 # For the train and development set, we use the gold label boundaries
 python3 run_genre.py \
---tsv_path ./multiconer2023/entity/"$lang"_train.conll \
+--tsv_path ./multiconer2023/finegrained/"$lang"_train.conll \
 --batch_size 32 \
 --output_path ./results/genre/"$lang"/"$lang"_train.json
 
 python3 run_genre.py \
---tsv_path ./multiconer2023/entity/"$lang"_dev.conll \
+--tsv_path ./multiconer2023/finegrained/"$lang"_dev.conll \
 --batch_size 32 \
 --output_path ./results/genre/"$lang"/"$lang"_dev.json
 

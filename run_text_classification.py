@@ -4,7 +4,7 @@ from transformers import (
     get_scheduler,
 )
 from dataset import get_dataloader
-from questions import (
+from category_dictionary import (
     id2fine,
     id2general_category,
     fine2id,
@@ -28,7 +28,9 @@ import argparse
 from utils import read_all_sentences_tsv
 from tag_encoding import rewrite_labels
 
+import os
 
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 def compute_metrics(
     json_path, pred_labels, positions, output_path, category: str = "fine"
 ):

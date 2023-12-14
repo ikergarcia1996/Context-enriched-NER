@@ -1,4 +1,5 @@
 import os
+import argparse
 
 
 def dataset2general(dataset_path: str, output_path: str):
@@ -17,28 +18,10 @@ def dataset2general(dataset_path: str, output_path: str):
 
 
 if __name__ == "__main__":
-    os.makedirs(
-        "/ikerlariak/igarcia945/MultiCoNER2/MultiCoNER2_train_dev_test/entity/",
-        exist_ok=True,
-    )
-    for lang in [
-        "bn",
-        "de",
-        "en",
-        "es",
-        "fa",
-        "fr",
-        "hi",
-        "it",
-        "pt",
-        "sv",
-        "uk",
-        "zh",
-        "multi"
-    ]:
-        for split in ["train", "dev","test"]:
-            dataset2general(
-                dataset_path=f"multiconer2023/finegrained/{lang}_{split}.conll",
-                output_path=f"multiconer2023/entity/{lang}_{split}.conll",
-            )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input_dataset", type=str, required=True)
+    parser.add_argument("--output_dataset", type=str, required=True)
+    args = parser.parse_args()
 
+    os.makedirs(os.path.dirname(args.output_dataset), exist_ok=True)
+    dataset2general(args.input_dataset, args.output_dataset)

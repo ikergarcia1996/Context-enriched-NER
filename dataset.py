@@ -2,7 +2,7 @@ from torch.utils.data import Dataset, DataLoader
 import os
 import json
 from typing import List, Tuple
-from questions import general_category2id, fine2id
+from category_dictionary import general_category2id, fine2id
 from tqdm.auto import tqdm
 from transformers import PreTrainedTokenizer, DataCollatorWithPadding
 

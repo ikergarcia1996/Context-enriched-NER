@@ -18,9 +18,13 @@ The original implementations are available here:
 
 ### Requirements
 You will need to install these dependencies to run the code
+
+**IMPORTANT**: The version of fairseq compatible with GENRE does not work with Python >= 3.11. Please use Python 3.9 to ensure that everything works correctly.  
 ```
 Pytorch (1.12 tested but should work with 1.6+: https://pytorch.org/get-started/locally/)
-Hugginface-Transformers (pip install transformers)
+Huggingface-Transformers (pip install transformers)
+Huggingface-Datasets (pip install datasets)
+Huggingface-Evaluate (pip install evaluate)
 numpy (pip install numpy)
 seaborn (pip install seaborn)
 matplotlib (pip install matplotlib)
@@ -41,16 +45,19 @@ pip install --editable ./
 
 ### Data and Models
 You also need to download the mGENRE model together with the TRIE and tittle2wikidataID dictionary.
-You can run `sh get_genre.sh` to download the model. 
+Run the following commands to download the model and the dictionary.
+```bash
+sh get_genre.sh
+```
 
 If you want to download the [MultiCoNER2 dataset](https://multiconer.github.io/) run:
 ```bash
 aws s3 cp --no-sign-request s3://multiconer/multiconer2023/ multiconer2023/ --recursive
 ```
 
-You will need to clean the data, you can use our script. Change the path to the data in your computer inside the script.
+You will need to clean the data, you can use our script. Set the path to folder where you downloaded the data in your computer.
 ```bash
-python3 preprocess_MultiCoNER2.py
+python3 preprocess_MultiCoNER2.py -i ./multiconer2023
 ```
 
 
@@ -78,28 +85,31 @@ The scripts to reproduce the results in the shared task can be found in the [rep
 
 This is the task of detecting the boundaries of the entities in the input text.
 The input is a text in the conll tsv format. It should have label with only B-ENTITY and I-ENTITY classes.
-You can run the `fine2ent.py` script to convert the fine-grained labels to entity boundaries. Change the path to the data in your computer inside the script.
+If you have run the `preprocess_MultiCoNER2.py` script, you will find the data into the 'multiconer2023/entity' folder. 
+If you are using, you can can run the `fine2ent.py` script to convert the fine-grained labels to entity boundaries. Change the path to the data in your computer inside the script.
 ```bash
-python3 fine2ent.py
+python3 fine2ent.py --input_file ./multiconer2023/EN-ENglish/en_train.conll --output_file ./multiconer2023/entity/en_train.conll
 ```
 See [data_examples/entity_boundary.conll](data_examples/entity_boundary.conll) for an example of the input format.
 
 We provide our script for token classification with is a binding of the [Hugginface's Token classification script](https://github.com/huggingface/transformers/tree/main/examples/pytorch/token-classification).
 You can use any Token Classification script you want, for example [flair](https://github.com/flairNLP/flair) or [SpaCy](https://spacy.io/). If you want to use our Token Classification script, you can run:
 ```bash
+cd TokenClassification 
+
 python3 run_tokenclass.py \
---train_file ./multiconer2023/entity/en_train.conll \
---dev_file ./multiconer2023/entity/en_dev.conll \
---test_file ./multiconer2023/entity/en_test.conll \
+--train_file ../multiconer2023/entity/en_train.conll \
+--dev_file ../multiconer2023/entity/en_dev.conll \
+--test_file ../multiconer2023/entity/en_test.conll \
 --model_name xlm-roberta-large \
---output_dir ./results/entity_boundaries/en \
+--output_dir ../results/entity_boundaries/en \
 --num_train_epochs 8 \
 --batch_size 16 \
 --gradient_accumulation_steps 1 \
 --learning_rate 2e-5 \
 --max_seq_length 256 \
 --number_of_experiments 5 \
---experiment_name ./results/entity_boundaries/en \
+--experiment_name entity_boundaries_en \
 --encoding iob2 \
 --lr_scheduler_type cosine \
 --fp16
@@ -118,20 +128,20 @@ We use mGENRE to do this task. You can run the `run_genre.py` script to link the
 For the train and development set, we use the gold label boundaries
 ```bash
 python3 run_genre.py \
---tsv_path ./multiconer2023/entity/en_train.conll \
+--tsv_path ./multiconer2023/finegrained/en_train.conll \
 --batch_size 32 \
 --output_path ./results/genre/en/en_train.json
 
-python3 run_genre_wikidata.py \
---tsv_path ./multiconer2023/entity/en_dev.conll \
+python3 run_genre.py \
+--tsv_path ./multiconer2023/finegrained/en_dev.conll \
 --batch_size 32 \
 --output_path ./results/genre/en/en_dev.json
 ```
 
 For the test set, we use the predicted boundaries from the previous step.
 ```bash
-python3 run_genre_wikidata.py \
---tsv_path ../results/entity_boundaries/en/test.model_predictions.tsv \
+python3 run_genre.py \
+--tsv_path ./results/entity_boundaries/en/test.model_predictions.tsv \
 --batch_size 32 \
 --output_path ./results/genre/en/en_test.json
 ```
@@ -163,7 +173,7 @@ But you can use any language you want.
 ```bash
 for split in train dev test 
 do
-python3 run_wikidata.py \
+python3 get_wikidata.py \
 --json_dict_path ./results/genre/en/en_"$split".json  \
 --language en \
 --batch_size 32 \

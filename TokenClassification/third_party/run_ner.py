@@ -26,8 +26,10 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import datasets
+import evaluate
 import numpy as np
-from datasets import ClassLabel, load_dataset, load_metric
+from datasets import ClassLabel, load_dataset
+from evaluate import load
 
 import transformers
 from transformers import (
@@ -541,7 +543,7 @@ def main():
     )
 
     # Metrics
-    metric = load_metric("seqeval")
+    metric = evaluate.load("seqeval")
 
     def compute_metrics(p):
         predictions, labels = p

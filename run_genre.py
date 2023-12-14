@@ -10,7 +10,7 @@ import torch
 from GENRE.genre.fairseq_model import mGENRE
 import pickle
 from GENRE.genre.trie import Trie
-from questions import fine2general
+from category_dictionary import fine2general
 from tqdm.auto import tqdm
 import argparse
 
@@ -61,7 +61,6 @@ def read_sentence(
     current_entity_fine_cat = None
     line: str = file.readline().rstrip().strip()
     while line:
-
         word: str
         label: str
         try:
@@ -227,14 +226,14 @@ def generate_genre_predictions(
     batch_size: int,
     num_beams: int = 8,
 ):
-
     print("Loading dataset...")
-    if dataset_path.endswith(".tsv"):
-        sentence_dict = create_dataset(dataset_path)
-    elif dataset_path.endswith(".json"):
+
+    if dataset_path.endswith(".json"):
         print(f"FOUND JSON DATASET; LOADING {dataset_path}")
         with open(dataset_path, "r", encoding="utf8") as f:
             sentence_dict = json.load(f)
+    else:
+        sentence_dict = create_dataset(dataset_path)
     genre_inputs = generate_genre_inputs(sentence_dict)
 
     print("Loading TRIE")
@@ -373,7 +372,6 @@ def generate_dataset(
     batch_size: int,
     output_path: str,
 ):
-
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
 
     sentence_dict = generate_genre_predictions(
